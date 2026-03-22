@@ -80,8 +80,8 @@ const renderArticle = (article: Article): HTMLElement => {
   });
 
   const contentEl = card.querySelector('.article-content') as HTMLElement;
-  const sanitized = DOMPurify.sanitize(article.content);
-  contentEl.innerHTML = sanitized;
+  const sanitizedFragment = DOMPurify.sanitize(article.content, { RETURN_DOM_FRAGMENT: true });
+  contentEl.replaceChildren(sanitizedFragment);
 
   // Intercept links inside article content
   contentEl.addEventListener('click', (e) => {
