@@ -1,0 +1,90 @@
+{
+  "extensionName": {
+    "message": "FreshRSS Peek",
+    "description": "Name of the extension."
+  },
+  "extensionDescription": {
+    "message": "Peek at your unread FreshRSS articles from the toolbar",
+    "description": "Description of the extension."
+  },
+  "contextMenu_checkNow": {
+    "message": "Check now"
+  },
+  "contextMenu_sidebar": {
+    "message": "Open FreshRSS in sidebar"
+  },
+  "contextMenu_noSidebar": {
+    "message": "Open FreshRSS page"
+  },
+  "badge_error": {
+    "message": "ERR",
+    "description": "Error badge, should be fewer than three characters"
+  },
+  "options_title": {
+    "message": "FreshRSS Peek Options",
+    "description": "Title tag for the options page"
+  },
+  "options_freshRssUrlLabel": {
+    "message": "FreshRSS URL"
+  },
+  "options_freshRssUrlPlaceholder": {
+    "message": "Path to FreshRSS instance"
+  },
+  "options_freshRssUrlHelp": {
+    "message": "The Google Reader API must be accessible under /api/greader.php. Enable API access in FreshRSS settings."
+  },
+  "options_freshRssUsernameLabel": {
+    "message": "Username"
+  },
+  "options_freshRssUsernamePlaceholder": {
+    "message": "FreshRSS username"
+  },
+  "options_freshRssPasswordLabel": {
+    "message": "API password"
+  },
+  "options_freshRssPasswordPlaceholder": {
+    "message": "API password (set in FreshRSS profile settings)"
+  },
+  "options_intervalLabel": {
+    "message": "Update interval (minutes)"
+  },
+  "options_intervalPlaceholder": {
+    "message": "Check interval"
+  },
+  "options_maxArticlesLabel": {
+    "message": "Articles to display in popup"
+  },
+  "options_maxArticlesPlaceholder": {
+    "message": "Number of articles"
+  },
+  "options_notificationsLabel": {
+    "message": "Show desktop notifications"
+  },
+  "options_sidebarLabel": {
+    "message": "Open in sidebar"
+  },
+  "options_save": {
+    "message": "Save settings"
+  },
+  "options_removePermissions": {
+    "message": "Reset host permissions"
+  },
+  "options_hostsLabel": {
+    "message": "FreshRSS Peek can currently access the following addresses:"
+  },
+  "options_hostsPlaceholder": {
+    "message": "FreshRSS Peek can't currently access any addresses."
+  },
+  "options_permissionsCleared": {
+    "message": "Host permissions cleared."
+  },
+  "options_permissionNotGranted": {
+    "message": "Saving failed because permission was not granted."
+  },
+  "options_saveSuccess": {
+    "message": "Settings saved!"
+  },
+  "options_saveFail": {
+    "message": "Saving failed"
+  }
+}

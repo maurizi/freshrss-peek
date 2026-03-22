@@ -1,0 +1,5 @@
+.idea
+node_modules/
+public/build/
+public/_metadata/
+web-ext-artifacts/

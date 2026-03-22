@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <link rel="stylesheet" href="popup.css">
+  <title>FreshRSS</title>
+</head>
+<body>
+  <header>
+    <a href="#" id="instance-link" title="Open FreshRSS">
+      <img src="../icons/32.png" alt="FreshRSS" height="24">
+    </a>
+    <div class="header-actions">
+      <button id="refresh-btn" type="button" title="Refresh" aria-label="Refresh">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 1v5h5"/>
+          <path d="M3.51 10a5.5 5.5 0 1 0 1.12-5.88L1 6"/>
+        </svg>
+      </button>
+      <span id="unread-count" title="Unread articles">0</span>
+    </div>
+  </header>
+
+  <main id="articles-container">
+    <div id="loading" class="status-message">Loading...</div>
+    <div id="empty-state" class="status-message" hidden>No unread articles</div>
+    <div id="setup-prompt" class="status-message" hidden>
+      <p>FreshRSS is not configured yet.</p>
+      <p><a href="#">Open settings</a> to connect your instance.</p>
+    </div>
+  </main>
+
+  <template id="article-template">
+    <article class="article-card" data-read="false">
+      <div class="article-header">
+        <button class="toggle-read-btn" type="button" aria-label="Toggle read state" title="Mark as read/unread">
+          <svg class="icon-unread" width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.708 2.825L15 11.105V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383v5.722z"/>
+          </svg>
+          <svg class="icon-read" width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8.47 1.318a1 1 0 0 0-.94 0l-6 3.2A1 1 0 0 0 1 5.4v.817l5.75 3.45L8 8.917l1.25.75L15 6.217V5.4a1 1 0 0 0-.53-.882l-6-3.2zM15 7.383l-4.778 2.867L15 13.117V7.383zm-.035 6.88L8 10.082l-6.965 4.18A1 1 0 0 0 2 15h12a1 1 0 0 0 .965-.738zM1 13.116l4.778-2.867L1 7.383v5.734z"/>
+          </svg>
+        </button>
+        <a href="#" class="article-title"></a>
+        <button class="toggle-content-btn" type="button" aria-label="Expand article">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="article-content" hidden></div>
+      <div class="article-footer">
+        <span class="article-feed"></span>
+        <span class="article-time"></span>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="../build/popup.js"></script>
+</body>
+</html>

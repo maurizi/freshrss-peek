@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>__options_title__</title>
+
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0 auto;
+          padding: 20px;
+      }
+
+      form {
+          display: grid;
+          gap: 15px;
+          margin-bottom: 15px;
+      }
+
+      label {
+          font-weight: bold;
+      }
+
+      input[type="text"], input[type="password"], input[type="url"], input[type="number"] {
+          width: 100%;
+          padding: 5px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+      }
+
+      label + input {
+          margin-top: 5px;
+      }
+
+      #url-help {
+          margin-top: 5px;
+          font-style: italic;
+          margin-bottom: 0;
+      }
+
+      button {
+          padding: 10px;
+          background-color: #f0f0f0;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          cursor: pointer;
+      }
+
+      hr {
+          border: 1px solid #ccc;
+          margin-top: 25px;
+          margin-bottom: 25px;
+      }
+
+      #save {
+          justify-self: end;
+      }
+
+      textarea {
+          width: 98%;
+          margin-top: 5px;
+          padding: 5px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          resize: none;
+          font-family: monospace;
+      }
+
+      #remove-permissions {
+          width: 100%;
+          margin-top: 15px;
+      }
+
+      #message {
+          display: none;
+      }
+
+      #host-reset-message {
+          display: none;
+          margin-top: 15px;
+      }
+
+      .success {
+          color: green;
+      }
+
+      .error {
+          color: red;
+      }
+  </style>
+
+</head>
+<body>
+<h1 id="title">__extensionName__</h1>
+<form>
+  <div>
+    <label for="url">__options_freshRssUrlLabel__</label>
+    <input type="url"
+           id="url"
+           name="url"
+           placeholder="__options_freshRssUrlPlaceholder__"
+           required
+    >
+      <p id="url-help">__options_freshRssUrlHelp__</p>
+  </div>
+
+  <div>
+    <label for="username">__options_freshRssUsernameLabel__</label>
+    <input type="text"
+           id="username"
+           name="username"
+           placeholder="__options_freshRssUsernamePlaceholder__"
+           required>
+  </div>
+
+  <div>
+    <label for="password">__options_freshRssPasswordLabel__</label>
+    <input type="password"
+           id="password"
+           name="password"
+           placeholder="__options_freshRssPasswordPlaceholder__"
+           required>
+  </div>
+
+  <div>
+    <label for="interval">__options_intervalLabel__</label>
+    <input
+      type="number"
+      id="interval"
+      min="1"
+      step="1"
+      name="interval"
+      placeholder="__options_intervalPlaceholder__"
+      required
+    >
+  </div>
+
+  <div>
+    <label for="maxArticles" id="maxArticles-label">__options_maxArticlesLabel__</label>
+    <input
+      type="number"
+      id="maxArticles"
+      min="1"
+      max="50"
+      step="1"
+      name="maxArticles"
+      placeholder="__options_maxArticlesPlaceholder__"
+      required
+    >
+  </div>
+
+  <label>
+    <input type="checkbox" id="notifications" name="notifications">
+    __options_notificationsLabel__
+  </label>
+
+  <label id="sidebar-option">
+    <input type="checkbox" id="sidebar" name="sidebar">
+    __options_sidebarLabel__
+  </label>
+
+  <button id="save" type="submit">__options_save__</button>
+
+  <span id="message">__MSG__</span>
+</form>
+
+<hr />
+
+<div>
+  <label id="hosts-label" for="hosts">__options_hostsLabel__</label>
+  <textarea id="hosts" placeholder="__options_hostsPlaceholder__" rows="7" disabled></textarea>
+  <button id="remove-permissions" type="button">__options_removePermissions__</button>
+  <span id="host-reset-message">__HOST_RESET_MSG__</span>
+</div>
+
+<script type="module" src="../build/options.js"></script>
+</body>
+</html>
