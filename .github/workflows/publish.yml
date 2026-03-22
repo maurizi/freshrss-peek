@@ -1,0 +1,47 @@
+name: Publish to AMO
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: web-ext lint
+        uses: kewisch/action-web-ext@v1
+        with:
+          cmd: lint
+          source: public/
+
+      - name: web-ext build
+        id: build
+        uses: kewisch/action-web-ext@v1
+        with:
+          cmd: build
+          source: public/
+          filename: "freshrss-peek-{version}.xpi"
+
+      - name: Submit to AMO
+        uses: kewisch/action-web-ext@v1
+        with:
+          cmd: sign
+          source: ${{ steps.build.outputs.target }}
+          channel: listed
+          apiKey: ${{ secrets.AMO_JWT_ISSUER }}
+          apiSecret: ${{ secrets.AMO_JWT_SECRET }}
+          metaDataFile: metadata.json
+          timeout: 900000
+
+      - name: Upload .xpi to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.build.outputs.target }}
