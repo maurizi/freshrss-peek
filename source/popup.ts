@@ -5,6 +5,21 @@ import { MessageType } from './constants';
 const sendMessage = <T>(type: MessageType, payload?: unknown): Promise<T> =>
   chrome.runtime.sendMessage({ type, payload });
 
+const isSafeUrl = (url: string): boolean => {
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+  } catch {
+    return false;
+  }
+};
+
+const openTab = (url: string, active = true) => {
+  if (isSafeUrl(url)) {
+    chrome.tabs.create({ active, url });
+  }
+};
+
 const elements = {
   container: document.getElementById('articles-container') as HTMLElement,
   loading: document.getElementById('loading') as HTMLElement,
@@ -60,7 +75,7 @@ const renderArticle = (article: Article): HTMLElement => {
   title.href = article.link;
   title.addEventListener('click', (e) => {
     e.preventDefault();
-    chrome.tabs.create({ active: true, url: article.link });
+    openTab(article.link);
     markAsRead(article, card);
   });
 
@@ -73,7 +88,7 @@ const renderArticle = (article: Article): HTMLElement => {
     const target = (e.target as HTMLElement).closest('a');
     if (target) {
       e.preventDefault();
-      chrome.tabs.create({ active: false, url: (target as HTMLAnchorElement).href });
+      openTab((target as HTMLAnchorElement).href, false);
     }
   });
 
@@ -172,7 +187,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     elements.instanceLink.addEventListener('click', (e) => {
       e.preventDefault();
-      chrome.tabs.create({ active: true, url: opts.url });
+      openTab(opts.url);
     });
   } catch (err) {
     console.error('Failed to get options:', err);

@@ -15,7 +15,6 @@ export interface Options {
   interval: number;
   sidebar: boolean;
   maxArticles: number;
-  notifications: boolean;
 }
 
 export enum BadgeColor {

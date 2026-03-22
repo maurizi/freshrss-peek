@@ -57,9 +57,6 @@
   "options_maxArticlesPlaceholder": {
     "message": "Number of articles"
   },
-  "options_notificationsLabel": {
-    "message": "Show desktop notifications"
-  },
   "options_sidebarLabel": {
     "message": "Open in sidebar"
   },

@@ -7,7 +7,6 @@ export const defaults: Options = Object.freeze({
   interval: 5,
   sidebar: false,
   maxArticles: 10,
-  notifications: true,
 });
 
 export const getOptions: () => Promise<Options> = async () => chrome.storage.sync.get(defaults) as Promise<Options>;

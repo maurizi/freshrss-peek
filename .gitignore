@@ -1,4 +1,7 @@
 .idea
+.DS_Store
+*.swp
+*.swo
 node_modules/
 public/build/
 public/_metadata/

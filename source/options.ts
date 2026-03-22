@@ -15,7 +15,6 @@ const i18n = {
   intervalPlaceholder: chrome.i18n.getMessage('options_intervalPlaceholder'),
   maxArticlesLabel: chrome.i18n.getMessage('options_maxArticlesLabel'),
   maxArticlesPlaceholder: chrome.i18n.getMessage('options_maxArticlesPlaceholder'),
-  notificationsLabel: chrome.i18n.getMessage('options_notificationsLabel'),
   sidebarLabel: chrome.i18n.getMessage('options_sidebarLabel'),
   save: chrome.i18n.getMessage('options_save'),
   removePermissions: chrome.i18n.getMessage('options_removePermissions'),
@@ -40,7 +39,6 @@ const HTML = {
   interval: document.querySelector('#interval') as HTMLInputElement,
   maxArticlesLabel: document.querySelector('label[for="maxArticles"]') as HTMLLabelElement,
   maxArticles: document.querySelector('#maxArticles') as HTMLInputElement,
-  notifications: document.querySelector('#notifications') as HTMLInputElement,
   sidebar: document.querySelector('#sidebar') as HTMLInputElement,
   sidebarOption: document.querySelector('#sidebar-option') as HTMLLabelElement,
   save: document.querySelector('#save') as HTMLButtonElement,
@@ -179,8 +177,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   HTML.interval.placeholder = i18n.intervalPlaceholder;
   HTML.maxArticlesLabel.textContent = i18n.maxArticlesLabel;
   HTML.maxArticles.placeholder = i18n.maxArticlesPlaceholder;
-  (HTML.notifications.nextSibling as HTMLElement).textContent = ` ${i18n.notificationsLabel}`;
-
   (HTML.sidebar.nextSibling as HTMLElement).textContent = ` ${i18n.sidebarLabel}`;
   HTML.save.textContent = i18n.save;
 
