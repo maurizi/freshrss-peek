@@ -1,7 +1,7 @@
 {
   "name": "freshrss-peek",
   "description": "Peek at your unread FreshRSS articles from the toolbar",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "MIT",
   "repository": {
     "url": "https://github.com/maurizi/freshrss-peek"
