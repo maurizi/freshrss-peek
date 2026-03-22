@@ -5,6 +5,7 @@ interface Subscription {
   title: string;
   htmlUrl?: string;
   url?: string;
+  iconUrl?: string;
 }
 
 interface StreamItem {
@@ -144,6 +145,7 @@ export class FreshRSSApi {
         content: item.summary?.content ?? '',
         feedTitle: sub?.title ?? item.origin.title ?? '',
         feedUrl: sub?.htmlUrl ?? sub?.url ?? '',
+        feedIconUrl: sub?.iconUrl ?? '',
         isRead: item.categories?.some((c) => c.id?.endsWith('/state/com.google/read')) ?? false,
         timestamp: item.published,
       };

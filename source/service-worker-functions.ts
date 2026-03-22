@@ -75,6 +75,13 @@ export const handleMessage = async (message: Message): Promise<unknown> => {
       await checkFeeds();
       return { success: true };
     }
+    case MessageType.MarkAllRead: {
+      const { itemIds } = message.payload as { itemIds: string[] };
+      const client = await getApi();
+      await Promise.all(itemIds.map((id) => client.toggleReadState(id, false)));
+      await checkFeeds();
+      return { success: true };
+    }
     case MessageType.Refresh: {
       await checkFeeds();
       const client = await getApi();

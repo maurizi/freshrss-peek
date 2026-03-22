@@ -106,9 +106,27 @@ header {
   transition: color 0.15s, border-color 0.15s;
 }
 
-#refresh-btn:hover {
+#refresh-btn:hover,
+#mark-all-read-btn:hover {
   color: var(--text-primary);
   border-color: var(--accent-teal);
+}
+
+#mark-all-read-btn {
+  background: none;
+  border: 1px solid var(--btn-border);
+  border-radius: 4px;
+  color: var(--btn-text);
+  cursor: pointer;
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+#mark-all-read-btn.loading {
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 #unread-count {
@@ -202,8 +220,12 @@ main {
   color: var(--read-icon-color);
 }
 
-.article-title {
+.article-title-group {
   flex: 1;
+  overflow: hidden;
+}
+
+.article-title {
   color: var(--text-link);
   font-weight: 600;
   font-size: 13px;
@@ -218,6 +240,20 @@ main {
 
 .article-title:hover {
   color: var(--text-link-hover);
+}
+
+.article-feed-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.article-feed-icon {
+  flex-shrink: 0;
+  border-radius: 2px;
 }
 
 .toggle-content-btn {
@@ -269,7 +305,7 @@ main {
   font-size: 11px;
   color: var(--text-muted);
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   border-top: 1px solid var(--border);
 }
 

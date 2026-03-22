@@ -26,6 +26,7 @@ const elements = {
   emptyState: document.getElementById('empty-state') as HTMLElement,
   unreadCount: document.getElementById('unread-count') as HTMLElement,
   refreshBtn: document.getElementById('refresh-btn') as HTMLElement,
+  markAllReadBtn: document.getElementById('mark-all-read-btn') as HTMLElement,
   instanceLink: document.getElementById('instance-link') as HTMLAnchorElement,
   template: document.getElementById('article-template') as HTMLTemplateElement,
 };
@@ -128,6 +129,14 @@ const renderArticle = (article: Article): HTMLElement => {
     }
   });
 
+  const feedIconEl = card.querySelector('.article-feed-icon') as HTMLImageElement;
+  if (article.feedIconUrl) {
+    feedIconEl.src = article.feedIconUrl;
+    feedIconEl.alt = article.feedTitle;
+  } else {
+    feedIconEl.remove();
+  }
+
   const feedEl = card.querySelector('.article-feed') as HTMLElement;
   feedEl.textContent = article.feedTitle;
 
@@ -136,6 +145,8 @@ const renderArticle = (article: Article): HTMLElement => {
 
   return card;
 };
+
+let currentArticles: Article[] = [];
 
 const loadArticles = async () => {
   elements.loading.hidden = false;
@@ -146,6 +157,7 @@ const loadArticles = async () => {
 
   try {
     const { articles, unreadCount } = await sendMessage<ArticlesResponse>(MessageType.GetArticles);
+    currentArticles = articles;
     elements.unreadCount.textContent = String(unreadCount);
 
     if (articles.length === 0) {
@@ -161,6 +173,28 @@ const loadArticles = async () => {
     elements.emptyState.hidden = false;
   } finally {
     elements.loading.hidden = true;
+  }
+};
+
+const markAllAsRead = async () => {
+  const unreadIds = currentArticles.filter((a) => !a.isRead).map((a) => a.id);
+  if (unreadIds.length === 0) return;
+
+  elements.markAllReadBtn.classList.add('loading');
+  try {
+    await sendMessage(MessageType.MarkAllRead, { itemIds: unreadIds });
+
+    for (const article of currentArticles) {
+      article.isRead = true;
+    }
+    for (const card of elements.container.querySelectorAll('.article-card')) {
+      (card as HTMLElement).dataset.read = 'true';
+    }
+    elements.unreadCount.textContent = '0';
+  } catch (err) {
+    console.error('Failed to mark all as read:', err);
+  } finally {
+    elements.markAllReadBtn.classList.remove('loading');
   }
 };
 
@@ -194,6 +228,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   elements.refreshBtn.addEventListener('click', loadArticles);
+  elements.markAllReadBtn.addEventListener('click', markAllAsRead);
 
   await loadArticles();
 });

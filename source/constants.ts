@@ -37,6 +37,7 @@ export enum MessageType {
   GetArticles = 'get-articles',
   GetUnreadCount = 'get-unread-count',
   ToggleRead = 'toggle-read',
+  MarkAllRead = 'mark-all-read',
   Refresh = 'refresh',
   GetOptions = 'get-options',
 }
@@ -58,6 +59,7 @@ export interface Article {
   content: string;
   feedTitle: string;
   feedUrl: string;
+  feedIconUrl: string;
   isRead: boolean;
   timestamp: number;
 }
