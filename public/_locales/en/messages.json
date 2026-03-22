@@ -83,5 +83,8 @@
   },
   "options_saveFail": {
     "message": "Saving failed"
+  },
+  "options_httpWarning": {
+    "message": "⚠ This URL uses HTTP. Your credentials will be sent unencrypted. Only use HTTP on a trusted local network."
   }
 }

@@ -24,6 +24,7 @@ const i18n = {
   permissionNotGranted: chrome.i18n.getMessage('options_permissionNotGranted'),
   saveSuccess: chrome.i18n.getMessage('options_saveSuccess'),
   saveFail: chrome.i18n.getMessage('options_saveFail'),
+  httpWarning: chrome.i18n.getMessage('options_httpWarning'),
 };
 
 const HTML = {
@@ -31,6 +32,7 @@ const HTML = {
   urlLabel: document.querySelector('label[for="url"]') as HTMLLabelElement,
   url: document.querySelector('#url') as HTMLInputElement,
   urlHelp: document.querySelector('#url-help') as HTMLParagraphElement,
+  urlHttpWarning: document.querySelector('#url-http-warning') as HTMLParagraphElement,
   usernameLabel: document.querySelector('label[for="username"]') as HTMLLabelElement,
   username: document.querySelector('#username') as HTMLInputElement,
   passwordLabel: document.querySelector('label[for="password"]') as HTMLLabelElement,
@@ -145,7 +147,7 @@ const saveOptions = async (event: SubmitEvent) => {
   }
 
   try {
-    await chrome.storage.sync.set(userOptions);
+    await chrome.storage.local.set(userOptions);
 
     // Firefox
     if (typeof window !== 'undefined' && window.localStorage) {
@@ -169,6 +171,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   HTML.urlLabel.textContent = i18n.urlLabel;
   HTML.url.placeholder = i18n.urlPlaceholder;
   HTML.urlHelp.textContent = i18n.urlHelp;
+  HTML.urlHttpWarning.textContent = i18n.httpWarning;
+
+  const updateHttpWarning = () => {
+    HTML.urlHttpWarning.style.display = HTML.url.value.startsWith('http://') ? 'block' : 'none';
+  };
+  HTML.url.addEventListener('input', updateHttpWarning);
+  updateHttpWarning();
   HTML.usernameLabel.textContent = i18n.usernameLabel;
   HTML.username.placeholder = i18n.usernamePlaceholder;
   HTML.passwordLabel.textContent = i18n.passwordLabel;

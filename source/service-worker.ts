@@ -35,7 +35,7 @@ chrome.contextMenus.onClicked.addListener(({ menuItemId }) => {
   }
 });
 
-chrome.storage.sync.onChanged.addListener(onStorageChanged);
+chrome.storage.local.onChanged.addListener(onStorageChanged);
 
 chrome.runtime.onMessage.addListener((message: Message, _sender, sendResponse) => {
   handleMessage(message).then(sendResponse).catch((error) => {
