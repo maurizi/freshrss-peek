@@ -4,5 +4,14 @@
   },
   "categories": {
     "firefox": ["feeds-news-blogging"]
+  },
+  "summary": {
+    "en-US": "Peek at your unread FreshRSS articles from the toolbar"
+  },
+  "description": {
+    "en-US": "FreshRSS Peek lets you check your unread articles from a FreshRSS instance directly in a toolbar popup — no need to open a new tab.\n\nFeatures:\n- Inline popup showing unread articles with expandable content\n- Click article titles to open and automatically mark as read\n- Toggle read/unread state per article\n- Badge count showing unread articles\n- Adapts to your Firefox light/dark theme\n- Configurable auto-refresh interval\n- Optional sidebar support\n\nRequires a FreshRSS instance with the Google Reader API enabled."
+  },
+  "homepage": {
+    "en-US": "https://github.com/maurizi/freshrss-peek"
   }
 }
