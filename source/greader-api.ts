@@ -99,7 +99,8 @@ export class FreshRSSApi {
   async getUnreadCount(): Promise<number> {
     const response = await this.fetchWithAuth(`${this.apiBase}${FreshRSSApi.UNREAD_COUNT}`);
     const data = await response.json();
-    return data.max;
+    const counts: { count: number }[] = data.unreadcounts ?? [];
+    return counts.reduce((sum, entry) => sum + entry.count, 0);
   }
 
   private async getSubscriptions(): Promise<Record<string, Subscription>> {

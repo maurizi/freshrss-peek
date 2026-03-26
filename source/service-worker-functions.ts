@@ -62,6 +62,7 @@ export const handleMessage = async (message: Message): Promise<unknown> => {
       const client = await getApi();
       const { maxArticles } = await getOptions();
       const [articles, unreadCount] = await Promise.all([client.getArticles(maxArticles), client.getUnreadCount()]);
+      setBadge(BadgeColor.Normal, unreadCount > 0 ? unreadCount.toString() : '');
       return { articles, unreadCount } satisfies ArticlesResponse;
     }
     case MessageType.GetUnreadCount: {
