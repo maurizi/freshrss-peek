@@ -99,8 +99,9 @@ export class FreshRSSApi {
   async getUnreadCount(): Promise<number> {
     const response = await this.fetchWithAuth(`${this.apiBase}${FreshRSSApi.UNREAD_COUNT}`);
     const data = await response.json();
-    const counts: { count: number }[] = data.unreadcounts ?? [];
-    return counts.reduce((sum, entry) => sum + entry.count, 0);
+    const counts: { id: string; count: number }[] = data.unreadcounts ?? [];
+    const readingList = counts.find((entry) => entry.id.includes('/state/com.google/reading-list'));
+    return readingList?.count ?? 0;
   }
 
   private async getSubscriptions(): Promise<Record<string, Subscription>> {
